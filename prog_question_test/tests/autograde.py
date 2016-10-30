@@ -41,6 +41,27 @@ class ProgQuestionPrivate(unittest.TestCase):
 
         self.assertTrue(test_result('private', 2))
 
+    @timeout_decorator.timeout(2)
+    def test_private_recursion(self):
+        def is_recursion(func):
+            def is_target(node, name):
+                return type(node) == ast.Call and type(node.func) == ast.Name and node.func.id == name
+
+            def is_recursion_node(func_def_node):
+                name = func_def_node.name
+                return len(list(filter(lambda node: is_target(node, name), ast.walk(func_def_node)))) > 0
+
+            root_node = ast.parse(inspect.getsource(func)).body[0]
+            func_def_nodes = filter(lambda node: type(node) == ast.FunctionDef, ast.walk(root_node))
+            return len(list(filter(lambda node: is_recursion_node(node), func_def_nodes))) > 0
+
+        self.meta['expression'] = 'test recursion'
+        self.meta['expected'] = 'True'
+        self.meta['output'] = str(is_recursion(user_function))
+        self.meta['hint'] = 'Your function is not recursive.'
+
+        self.assertTrue(is_recursion(user_function))
+
 class ProgQuestionEvaluation(unittest.TestCase):
     def setUp(self):
         # clears the dictionary containing meta data for each test
