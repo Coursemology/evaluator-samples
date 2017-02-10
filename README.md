@@ -15,6 +15,20 @@ For coding exercises where the template given has syntax errors or infinite loop
 The exact location of the files containing tests for submissions to the coding exercise is defined by the Makefile.
 
 ---
+# Makefile
+
+The Makefile must contain the following make targets.
+
+1. `prepare`
+2. `compile`
+3. `test`
+
+These 3 targets will be run by the evaluator in the order shown above.
+
+A successful evaluation must produce a file named `report.xml`.
+A sample report file is available in the `sample_reports` folder.
+
+---
 # Python Test samples
 
 The current test samples are specific to the [evaluator images](https://github.com/Coursemology/evaluator-images/tree/master/python/python3.5) deployed for CS1010S, which uses a [modified fork of python's unit test runner](https://github.com/Coursemology/unittest-xml-reporting/tree/extra-attributes).
