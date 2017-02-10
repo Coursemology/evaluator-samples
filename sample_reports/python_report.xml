@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite errors="0" failures="0" name="ProgQuestionEvaluation" skipped="0" tests="2" time="0.000">
+		<testcase classname="ProgQuestionEvaluation" name="test_evaluation_1" time="0.000">
+			<meta expected="True" expression="test_result(&quot;evaluation&quot;, 1)" hint="evaluation 1: Your function return type is &lt;class 'bool'&gt;" output="True"/>
+		</testcase>
+		<testcase classname="ProgQuestionEvaluation" name="test_evaluation_2" time="0.000">
+			<meta expected="True" expression="test_result(&quot;evaluation&quot;, 2)" hint="evaluation 2: Your function return type is &lt;class 'bool'&gt;" output="True"/>
+		</testcase>
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testsuite>
+	<testsuite errors="0" failures="0" name="ProgQuestionPrivate" skipped="0" tests="2" time="0.000">
+		<testcase classname="ProgQuestionPrivate" name="test_private_1" time="0.000">
+			<meta expected="True" expression="test_result(&quot;private&quot;, 1)" hint="You can try raising exceptions" output="True"/>
+		</testcase>
+		<testcase classname="ProgQuestionPrivate" name="test_private_2" time="0.000">
+			<meta expected="True" expression="test_result(&quot;private&quot;, 2)" hint="Private 2" output="True"/>
+		</testcase>
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testsuite>
+	<testsuite errors="0" failures="0" name="ProgQuestionPublic" skipped="0" tests="1" time="0.000">
+		<testcase classname="ProgQuestionPublic" name="test_public_1" time="0.000">
+			<meta expected="True" expression="test_result(&quot;public&quot;, 1)" hint="public 1: Your function return type is &lt;class 'bool'&gt;" output="True"/>
+		</testcase>
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testsuite>
+</testsuites>
