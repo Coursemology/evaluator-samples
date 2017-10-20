@@ -21,11 +21,21 @@ The Makefile must contain the following make targets.
 
 1. `prepare`
 2. `compile`
+3. `public`
+4. `private`
+5. `evaluation`
+
+This Makefile format allows the test types to be run separately by the evaluator. It _must not_ contain the `test` target.
+
+Alternatively, the evaluator is backwards-compatible with the legacy Makefile format, which must contain the following make targets.
+
+1. `prepare`
+2. `compile`
 3. `test`
 
-These 3 targets will be run by the evaluator in the order shown above.
+In both cases, these targets will be run by the evaluator in the order shown above.
 
-A successful evaluation must produce a file named `report.xml`.
+A successful evaluation, whether in a test type like `public` or the legacy single `test` target, must produce a file named `report.xml`.
 A sample report file is available in the `sample_reports` folder.
 
 ---
@@ -69,7 +79,10 @@ sample_tests.zip
 ## Description of test files
 The tests to be run on the students' submissions are in `autograde.py`. `prepend.py` consists of code to be prepended to the submissions before the tests are run, while `append.py` consists of code to be appended to the submissions before the tests are run.
 
-The tests for a student's programming exercise are run by sending the package with the templates in the `submission` folder replaced by the student's submissions to the code evaluator. The evaluator generates a xml test report file by running `make test` on the package. The test report file is then retrieved by Coursemology to render the test results for the student.
+The tests for a student's programming exercise are run by sending the package with the templates in the `submission` folder replaced by the student's submissions to the code evaluator.
+For each test type, the evaluator generates a xml test report file by running `make <type>` on the package.
+(For legacy Makefiles, the evaluator generates a single xml test report by running `make test` on the package.)
+The test report files are then retrieved by Coursemology to render the test results for the student.
 
 ### autograde.py
 Each test to be executed on the students' code submissions must be written as methods of a class extending `unittest.TestCase` as required by the unit test framework.
@@ -85,4 +98,4 @@ Private test cases are instance methods with names of the format: `test_private_
 
 Evalution test cases, which are used to assign a preliminary grade to the programming exercise, are instance methods with names of the format: `test_evaluation_*`
 
-Timeouts for each test case can be defined using the timeout decorator: @timeout_decorator.timeout(time-in-seconds)
+Timeouts for each test case can be defined using the timeout decorator: `@timeout_decorator.timeout(time-in-seconds)`
