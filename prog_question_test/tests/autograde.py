@@ -62,6 +62,20 @@ class ProgQuestionPrivate(unittest.TestCase):
 
         self.assertTrue(is_recursion(user_function))
 
+    @timeout_decorator.timeout(2)
+    def test_private_iteration(self):
+        def is_iteration(func):
+            children_nodes = list(ast.walk(ast.parse(inspect.getsource(func))))
+
+            return len(list(filter(lambda node: type(node) in (ast.For, ast.While), children_nodes))) > 0
+
+        self.meta['expression'] = 'test iteration'
+        self.meta['expected'] = 'True'
+        self.meta['output'] = str(is_iteration(user_function))
+        self.meta['hint'] = 'Your function is not iterative.'
+
+        self.assertTrue(is_iteration(user_function))
+
 class ProgQuestionEvaluation(unittest.TestCase):
     def setUp(self):
         # clears the dictionary containing meta data for each test
